@@ -1,10 +1,16 @@
 import React, { Component } from 'react';
-import Header from '../../components/HeaderView/header';
+import SelectView from '../../components/commons/SelectView';
+import './serviceMockingView.css';
 
 class ServiceMockingView extends Component {
   render() {
-    return (
-        <Header />
+      const types = [{name:'All',id:'All'},{name:'POST',id:'POST'},{name:'GET',id:'GET'}]
+      const tags = [{name:'All',id:'All'},{name:'POST',id:'POST'},{name:'GET',id:'GET'}]
+    return(
+      <div className="filterBar">
+        <SelectView options={types} setterValue="all" placeholder='Select Type' className="filterBar__selectField"/>
+        <SelectView options={tags} setterValue="all" placeholder='Select Tags' className="filterBar__selectField "/>
+      </div>
     );
   }
 }
