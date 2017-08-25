@@ -5,20 +5,34 @@ import './app.css';
 const hashHistory = require('react-router/lib/hashHistory');
 
 class App extends Component {
+  constructor(props) {
+      super();
+  }
+  onTabChange = (i) => {
+    if(i === 0) {
+      hashHistory.push('/service');
+    } else {
+      hashHistory.push('/workflow');
+    }
+  }
   render() {
-    const onTabChange  = (i) => {
-      if(i === 0) {
-        hashHistory.push('/service');
-      } else {
-        hashHistory.push('/workflow');
-      }
+    // Need to revisit logic
+    this.selected = 0;
+    let path = this.props.location.pathname;
+    if(path === '/' || path === '/service') {
+        this.selected = 0;
+    } else if (path === '/workflow') {
+        this.selected = 1;
+    } else {
+        this.selected = 0;
     }
     return (
         <div>
           <Header />
           <div className="tabView">
             <Tabs
-              onTabChange = { onTabChange }
+              onTabChange = { this.onTabChange }
+              selected = { this.selected }          
               tabs={[
                 {
                   children: () => (
