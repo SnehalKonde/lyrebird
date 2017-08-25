@@ -3,10 +3,6 @@ import React, { Component } from 'react';
 class SelectView extends Component {
   constructor(props) {
       super();
-      this.options = props.options;
-      this.label =  props.label;
-      this.placeholder = props.placeholder;
-      this.className = props.className;
       this.state = {
         setterValue: props.setterValue,
       };
@@ -22,22 +18,22 @@ class SelectView extends Component {
       });
   }
   render() {
-        const dropDownOptions = this.options && this.options.map((option) =>
+
+        const dropDownOptions = this.props.options && this.props.options.map((option) =>
 			<option 
 				key={option.id} 
 				value={option.id}
-				selected={(this.state.setterValue === option.id) ? "selected" : false}
 				>{option.name}
 			</option>
 		);
 		return (
             <select 
-                className={this.className} 
+                className={this.props.className} 
                 value={this.state.setterValue}
                 disabled={(this.state.disabled === true || this.state.disabled === 'true') ? true : false} 
                 onChange={(event) => this.onChangeHandler(event)}
                 >
-                <option selected="selected">{this.placeholder}</option>
+                <option>{this.props.placeholder}</option>
                 {dropDownOptions}
             </select>
 		);
