@@ -3,7 +3,8 @@ import SelectView from '../../components/commons/SelectView';
 import './serviceMockingView.css';
 import { connect } from 'react-redux';
 import  * as actions  from '../../actions/fetchApiDataActions';
-import {bindActionCreators} from 'redux';
+import { bindActionCreators } from 'redux';
+const _ = require('lodash');
 
 class ServiceMockingView extends Component {
   componentWillMount() {
@@ -13,10 +14,19 @@ class ServiceMockingView extends Component {
 
   render() {
       //const types = [{name:'All',id:'All'},{name:'POST',id:'POST'},{name:'GET',id:'GET'}]
-      const tags = [{name:'All',id:'All'},{name:'POST',id:'POST'},{name:'GET',id:'GET'}]
-      const types = this.props.serviceMockingData.map((apiData) => 
+      const tags = [];
+      const types = this.props.serviceMockingData && this.props.serviceMockingData.map((apiData) => 
       {
          return {id:apiData.methodType, name:apiData.methodType} 
+      })
+      _.each(this.props.serviceMockingData, function(value){
+         _.each(value.pathsDetails, function(data){
+           if(data && data.details && data.details.post &&  data.details.post.tags){
+             if(_.findIndex(tags,{name:data.details.post.tags[0]}) === -1){
+                tags.push({name:data.details.post.tags[0],id:data.details.post.tags[0]});
+             }
+           }
+         })
       })
     return(
       <div className="filterBar">
@@ -28,7 +38,7 @@ class ServiceMockingView extends Component {
 }
 function mapStateToProps(state,ownState) {
    return {
-     serviceMockingData : state.ServiceData
+     serviceMockingData : state.get('ServiceData')
   }
 }
 

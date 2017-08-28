@@ -18,6 +18,6 @@ const enhancer = composeEnhancers(
   // other store enhancers if any
 );
 
-const Store =  createStore(reducers,{ServiceData:[]},enhancer);
+const Store =  createStore(reducers,enhancer);
 sagaMiddleware.run(apiSaga);
 export default Store;
