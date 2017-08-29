@@ -10,12 +10,13 @@ class SelectView extends Component {
   }
   onChangeHandler(event){
       let value = event.target.value;
-      this.setValue(value);
+      this.setValue(event,value);
   }
-  setValue(val) {
+  setValue(event,val) {
       this.setState({
           setterValue: val
       });
+      this.props.onFilterChangeHandler(event,val);
   }
   render() {
 
@@ -28,6 +29,7 @@ class SelectView extends Component {
 		);
 		return (
             <select 
+                id={this.props.id}
                 className={this.props.className} 
                 value={this.state.setterValue}
                 disabled={(this.state.disabled === true || this.state.disabled === 'true') ? true : false} 

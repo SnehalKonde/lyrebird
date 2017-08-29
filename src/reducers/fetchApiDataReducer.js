@@ -1,12 +1,22 @@
 import Immutable from 'immutable';
+const _ = require('lodash');
 const initialState = Immutable.Map({ServiceData:[]});
 export default (state = initialState, action) => {
     switch (action.type) {
         case "REQUEST_API_DATA_SUCCEEDED":
-            let updatedState = Immutable.Map({ServiceData:action.payload});
+            let serviceData = [];
+            _.each(action.payload, function(apiData){
+                _.each(apiData && apiData.pathsDetails, function(pathDetail){
+                    if(pathDetail){
+                        serviceData.push({details: pathDetail.details, path:pathDetail.path, _id:apiData._id, methodType:apiData.methodType});
+                    }
+                })
+                if((apiData.pathsDetails.length === 0) && (apiData._id || apiData.methodType)){
+                    serviceData.push({_id:apiData._id, methodType:apiData.methodType}); 
+                }
+            })
+            let updatedState = Immutable.Map({ServiceData:serviceData});
             return  state.merge(updatedState);
-        case "SAVE_SERVICE_MOCKING_DATA":
-            return  Object.assign({},state,{ServiceData: action.payload });
         default:
         	return state;  
     }
