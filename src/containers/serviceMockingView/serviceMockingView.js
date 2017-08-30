@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import SelectView from '../../components/commons/SelectView';
-import TableView from '../../components/commons/TableView';
+import TableView from '../../components/TableView/TableView';
 import filterServiceMockingData from '../../helpers/utils';
 import './serviceMockingView.css';
 import { connect } from 'react-redux';

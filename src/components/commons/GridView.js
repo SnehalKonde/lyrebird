@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import {Grid, Row, Col, Clearfix} from 'react-bootstrap'
 
-class TableView extends Component {
+class GridView extends Component {
   render() {
     const listingComponent = this.props.listingData.map((val) => 
       <tr>
@@ -10,11 +11,13 @@ class TableView extends Component {
       </tr>
     )
     return(
-      <table>
-        {listingComponent}
-      </table>
+      <Grid striped bordered condensed hover>
+        <tbody>
+            {listingComponent}
+        </tbody>
+      </Grid>
     );
   }
 }
 
-export default TableView;
+export default GridView;
