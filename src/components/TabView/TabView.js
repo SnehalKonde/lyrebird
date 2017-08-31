@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Tabs from 'react-tabs-navigation';
-import './tab.css';
+import './tab.scss';
 const hashHistory = require('react-router/lib/hashHistory');
 
 class TabView extends Component {

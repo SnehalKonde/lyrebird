@@ -1,8 +1,8 @@
+import './serviceMockingView.scss';
 import React, { Component } from 'react';
 import SelectView from '../../components/commons/SelectView';
 import TableView from '../../components/TableView/TableView';
 import filterServiceMockingData from '../../helpers/utils';
-import './serviceMockingView.css';
 import { connect } from 'react-redux';
 import  * as actions  from '../../actions/fetchApiDataActions';
 import { bindActionCreators } from 'redux';
@@ -29,16 +29,16 @@ class ServiceMockingView extends Component {
       const tags = [];
       const types = [];
       if(this.props.serviceMockingData){
-        this.props.serviceMockingData.map((apiData) => 
+        this.props.serviceMockingData.map((apiData) =>
         {
           if(_.has(apiData, 'methodType')){
-            (_.findIndex(types,{name:apiData.methodType}) === -1) && types.push({id:apiData.methodType, name:apiData.methodType}); 
+            (_.findIndex(types,{name:apiData.methodType}) === -1) && types.push({id:apiData.methodType, name:apiData.methodType});
           }
           if(_.has(apiData, 'details.'+[apiData.methodType]+'.tags')){
-            (_.findIndex(tags,{name:apiData.details[apiData.methodType].tags[0]}) === -1) &&  tags.push({id:apiData.details[apiData.methodType].tags[0], name:apiData.details[apiData.methodType].tags[0]}); 
+            (_.findIndex(tags,{name:apiData.details[apiData.methodType].tags[0]}) === -1) &&  tags.push({id:apiData.details[apiData.methodType].tags[0], name:apiData.details[apiData.methodType].tags[0]});
           }
         })
-    }  
+    }
     return(
       <div className="filterBar">
         <SelectView options={types} id="types" placeholder='Select Type' className="filterBar__selectField" onFilterChangeHandler={this.onFilterChangeHandler}/>

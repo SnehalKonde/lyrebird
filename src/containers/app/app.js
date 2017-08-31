@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Header from '../../components/HeaderView/header';
 import TabView from '../../components/TabView/TabView';
+import './app.scss'
 
 class App extends Component {
   constructor(props) {

@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import './table.css'
+import './table.scss'
 
 class TableView extends Component {
   render() {
-    let listingComponent = this.props.listingData.map((val) => 
+    let listingComponent = this.props.listingData.map((val) =>
       <tr>
         <td>{val.type}</td>
         <td>{val.tag}</td>
-        <td>{val.path}</td>  
+        <td>{val.path}</td>
       </tr>
     )
     if(this.props.listingData.length === 0){
