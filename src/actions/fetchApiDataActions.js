@@ -1,20 +1,21 @@
+import * as constant from '../constants/AppConstant';
 export const getApiList = (url) => {
     return {
-        type : "REQUEST_API_DATA",
+        type : constant.REQUEST_API_DATA,
         URL: url
     }
 };
 
 export const requestApiDataSucceeded = (data) => {
     return {
-        type : "REQUEST_API_DATA_SUCCEEDED",
+        type : constant.REQUEST_API_DATA_SUCCEEDED,
         payload : data
     }
 };
 
 export const requestApiDataFailed = (errorMsg) => {
     return {
-        type : "REQUEST_API_DATA_FAILED",
+        type : constant.REQUEST_API_DATA_FAILED,
         errorMsg : errorMsg
     }
 };

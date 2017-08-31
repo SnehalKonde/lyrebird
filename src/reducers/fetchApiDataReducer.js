@@ -1,9 +1,12 @@
 import Immutable from 'immutable';
+import * as constant from '../constants/AppConstant';
+
+
 const _ = require('lodash');
 const initialState = Immutable.Map({ServiceData:[]});
 export default (state = initialState, action) => {
     switch (action.type) {
-        case "REQUEST_API_DATA_SUCCEEDED":
+        case constant.REQUEST_API_DATA_SUCCEEDED:
             let serviceData = [];
             _.each(action.payload, function(apiData){
                 _.each(apiData && apiData.pathsDetails, function(pathDetail){
