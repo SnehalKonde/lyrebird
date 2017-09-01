@@ -1,16 +1,22 @@
 import './header.scss';
 import React, { Component } from 'react';
-import logo from '../../assets/images/logo.png';
-
+import NavigationBar from '../NavigationView/NavigatorBarView';
 
 class Header extends Component {
+  constructor(props){
+    super(props);
+    //Todo as of now we consider user already login
+    this.state={isLogin: true };
+  }
   render() {
+    //TODO if any header needed
+
     return (
-        <div className="header">
-          <img src={logo} className="header__logo" alt="logo" />
-        </div>
+      <div>
+        {this.state.isLogin && <NavigationBar /> }
+      </div>
     );
   }
 }
-
+//Todo proto
 export default Header;
