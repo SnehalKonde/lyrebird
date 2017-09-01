@@ -5,8 +5,8 @@ class TableView extends Component {
   render() {
     let listingComponent = this.props.listingData.map((val) =>
       <tr>
-        <td>{val.type}</td>
-        <td>{val.tag}</td>
+        <td>{val.methodType}</td>
+        <td>{(val.tags) ? val.tags[0] : ''}</td>
         <td>{val.path}</td>
       </tr>
     )

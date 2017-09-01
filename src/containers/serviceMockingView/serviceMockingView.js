@@ -28,7 +28,7 @@ class ServiceMockingView extends Component {
   render() {
       const tags = [];
       const types = [];
-      if(this.props.serviceMockingData){
+      /*if(this.props.serviceMockingData){
         this.props.serviceMockingData.map((apiData) =>
         {
           if(_.has(apiData, 'methodType')){
@@ -38,7 +38,19 @@ class ServiceMockingView extends Component {
             (_.findIndex(tags,{name:apiData.details[apiData.methodType].tags[0]}) === -1) &&  tags.push({id:apiData.details[apiData.methodType].tags[0], name:apiData.details[apiData.methodType].tags[0]});
           }
         })
-    }
+      }*/
+        
+      if(this.props.serviceMockingData){
+        this.props.serviceMockingData.map((apiData) =>
+        {
+          if(_.has(apiData, 'methodType')){
+            (_.findIndex(types,{name:apiData.methodType}) === -1) && types.push({id:apiData.methodType, name:apiData.methodType});
+          }
+          if(_.has(apiData, 'tags')){
+            (_.findIndex(tags,{name:apiData.tags[0]}) === -1) &&  tags.push({id:apiData.tags[0], name:apiData.tags[0]});
+          }
+        })
+      } 
     return(
       <div className="filterBar">
         <SelectView options={types} id="types" placeholder='Select Type' className="filterBar__selectField" onFilterChangeHandler={this.onFilterChangeHandler}/>
