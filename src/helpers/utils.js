@@ -1,5 +1,5 @@
 const _ = require('lodash');
-export default function filterServiceMockingData(data,state){
+/*export default function filterServiceMockingData(data,state){
     let filterData = [];
     const listingData = [];
     const types = [];
@@ -32,4 +32,18 @@ export default function filterServiceMockingData(data,state){
         listingData.push({type:apiData.methodType,tag:tagValue,path:apiData.path});
     })
     return listingData;
+}*/
+ export default function  filterServiceMockingData(data,state){
+    let filteredData = [];
+    if(state.types !== "Select Type" && state.tags !== "Select Tag"){
+        filteredData = _.filter(data,{tags:[state.tags],methodType : state.types});
+    } else if(state.types !== "Select Type" && state.tags === "Select Tag") {
+        filteredData = _.filter(data,{methodType : state.types});
+    } else if(state.types === "Select Type" && state.tags !== "Select Tag") {
+        filteredData = _.filter(data,{tags:[state.tags]});
+    } else {
+        filteredData = data;
+    }
+    return filteredData;
 }
+
